@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // バリデーションを突破したあとの処理
     if (!$errors) {
 
-        $dbh = connectDb();
         $sql = 'INSERT INTO tweets (content) VALUES (:content)';
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':content', $content, PDO::PARAM_STR);
