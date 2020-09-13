@@ -23,11 +23,11 @@ if (!$tweet) {
 <!DOCTYPE html>
 <html>
 
-<head>
     <meta charset="utf-8">
     <title>Tweet詳細</title>
     <link rel="stylesheet" href="style.css">
-</head>
+
+</html>
 
 <body>
     <h1>テストツイート</h1>
@@ -39,10 +39,10 @@ if (!$tweet) {
             投稿日時: <?= h($tweet['created_at']) ?>
 
             <?php if ($tweet['good']) : ?>
-                <a href="good.php?id=<?= ($tweet['id']) ?>" class="good-link">★</a>
+                <a href="good.php?id=<?= h($tweet['id']) ?>" class="good-link">[★]</a>
 
             <?php else : ?>
-                <a href="good.php?id=<?= ($tweet['id']) ?>" class="bad-link">☆</a>
+                <a href="good.php?id=<?= h($tweet['id']) ?>" class="bad-link">[☆]</a>
 
             <?php endif; ?>
             <a href="edit.php?id=<?= h($tweet['id']) ?>">[編集]</a>
@@ -51,5 +51,3 @@ if (!$tweet) {
         </li>
     </ul>
 </body>
-
-</html>

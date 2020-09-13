@@ -1,10 +1,3 @@
-<!-- いいね機能(good.php)
-パラメーターで渡されたidを使用して該当データのいいねを更新
-パラメーターのgoodがtrueだったらgoodカラムをtrueに更新
-パラメーターのgoodがfalseだったらgoodカラムをfalseに更新
-パラメーターの値でgoodカラムが更新されたら元のページに戻る
- -->
-
 <?php
 
 require_once('config.php');
