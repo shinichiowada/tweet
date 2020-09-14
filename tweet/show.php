@@ -13,18 +13,17 @@ $stmt->execute();
 
 $tweet = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// 存在しないidを渡された場合はindex.phpへ飛ばす
 if (!$tweet) {
     header('Location: index.php');
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
 <html>
-
 <meta charset="utf-8">
-<title>Tweet詳細</title>
+<title>showTweet</title>
 <link rel="stylesheet" href="style.css">
 
 </html>
@@ -36,17 +35,14 @@ if (!$tweet) {
         <li>
             [#<?= h($tweet['id']) ?>]
             <?= h($tweet['content']) ?><br>
-            投稿日時: <?= h($tweet['created_at']) ?>
-
+            投稿日時:<?= h($tweet['created_at']) ?>
             <?php if ($tweet['good']) : ?>
-                <a href="good.php?id=<?= h($tweet['id']) ?>&good=0" class="good-link">★</a>
-
+                <a href="good.php?id=<?= h($tweet['id']) ?>&good=0" class="good-list">★</a>
             <?php else : ?>
-                <a href="good.php?id=<?= h($tweet['id']) ?>&good=1" class="bad-link">☆</a>
-
+                <a href="good.php?id=<?= h($tweet['id']) ?>&good=1" class="Notgood-list">☆</a>
             <?php endif; ?>
-                <a href="edit.php?id=<?= h($tweet['id']) ?>">[編集]</a>
-                <a href="delete.php?id=<?= h($tweet['id']) ?>">[削除]</a>
+            <a href="edit.php?id=<?= h($tweet['id']) ?>">[編集]</a>
+            <a href="delete.php?id=<?= h($tweet['id']) ?>">[削除]</a>
             <hr>
         </li>
     </ul>

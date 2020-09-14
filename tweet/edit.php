@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <h1>tweetの編集</h1>
-    <div class="go-back">
+    <div class="back">
         <a href="index.php">戻る</a>
     </div>
     <?php if ($errors) : ?>

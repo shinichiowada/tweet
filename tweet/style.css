@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .tweet-list li {
-  list-style: none;
+    list-style: none;
 }
 
 .error-list {
@@ -9,11 +9,11 @@
     list-style: none;
 }
 
-.good-link {
+.good-list {
     text-decoration: none;
     color: red;
 }
 
-.bad-link {
+.Notgood-list {
     text-decoration: none;
 }
