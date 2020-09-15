@@ -12,20 +12,20 @@ $stmt->execute();
 $tweets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $contents = $_POST['contents'];
+    $content = $_POST['content'];
     $errors = [];
 
     // バリデーション
     if ($contents == '') {
-        $errors['contents'] = 'ツイート内容を入力してください。';
+        $errors['content'] = 'ツイート内容を入力してください。';
     }
 
     // バリデーションを突破したあとの処理
     if (!$errors) {
         $dbh = connectDb();
-        $sql = 'INSERT INTO tweets (content) VALUES (:contents)';
+        $sql = 'INSERT INTO tweets (content) VALUES (:content)';
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':contents', $contents, PDO::PARAM_STR);
+        $stmt->bindParam(':content', $content, PDO::PARAM_STR);
         $stmt->execute();
 
         header('Location: index.php');
@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <form action="" method="post">
         <div>
-            <label for="contents">ツイート内容</label><br>
-            <textarea name="contents" placeholder="いまどうしてる？" cols="30" rows="5"></textarea>
+            <label for="content">ツイート内容</label><br>
+            <textarea name="content" placeholder="いまどうしてる？" cols="30" rows="5"></textarea>
         </div>
         <div class="input">
             <input type="submit" value="投稿する">
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="show.php?id=<?= h($tweet['id']) ?>"><?= h($tweet['content']) ?></a><br>
                     投稿日時: <?= h($tweet['created_at']) ?>
                     <?php if ($tweet['good']) : ?>
-                        <a href="good.php?id=<?= h($tweet['id']) ?>&good=o" class="good-list">★</a>
+                        <a href="good.php?id=<?= h($tweet['id']) ?>&good=0" class="good-list">★</a>
                     <?php else : ?>
                         <a href="good.php?id=<?= h($tweet['id']) ?>&good=1" class="Notgood-list">☆</a>
                     <?php endif; ?>
