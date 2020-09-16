@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
 
     // バリデーション
-    if ($contents == '') {
+    if ($content == '') {
         $errors['content'] = 'ツイート内容を入力してください。';
     }
 
     // バリデーションを突破したあとの処理
     if (!$errors) {
-        $dbh = connectDb();
+
         $sql = 'INSERT INTO tweets (content) VALUES (:content)';
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':content', $content, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if ($tweet['good']) : ?>
                         <a href="good.php?id=<?= h($tweet['id']) ?>&good=0" class="good-list">★</a>
                     <?php else : ?>
-                        <a href="good.php?id=<?= h($tweet['id']) ?>&good=1" class="Notgood-list">☆</a>
+                        <a href="good.php?id=<?= h($tweet['id']) ?>&good=1" class="good-list">☆</a>
                     <?php endif; ?>
                     <hr>
                 </li>
